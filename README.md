@@ -28,7 +28,7 @@ For results and processed data, please kindly run the Jupyter Notebooks.
 ### New : `transformer_vae_cite/multi.ipynb`
 - **`transformer_vae_cite.ipynb`**: VAE-enhanced Transformer pipeline for CITE (RNA → Protein).  
 - **`transformer_vae_multi.ipynb`**: VAE-enhanced Transformer pipeline for MULTI (DNA → RNA).
-
+**The difference between codes for cite and multi is the multi codes loads and processes data with chunks due to the size of dataset.**
 ---
 
 ## Algorithm Overview
