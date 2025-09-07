@@ -12,8 +12,8 @@ For results and processed data, please refer to: <https://drive.google.com/drive
 - **`data_processing.ipynb`**  
   This notebook performs the following four steps:  
   1) Read data from `train_cite_inputs.h5`, `train_cite_targets.h5`, and `test_cite_inputs.h5`.  
-  2) From `train_cite_inputs.h5`, filter out low-variance genes, genes expressed in few cells, and cells that express few genes.  
-  3) Remove cells that express few genes from `train_cite_targets.h5`, and remove genes expressed in few cells from `test_cite_inputs.h5`.  
+  2) From `train_cite_inputs.h5`, filter out low-variance features, features expressed in few cells, and cells that express few features.  
+  3) Remove cells that express few features from `train_cite_targets.h5`, and remove features expressed in few cells from `test_cite_inputs.h5`.  
   4) Convert the data to a sparse matrix format and store it as `.h5ad` files.
 
 - **`metadata.csv`**: Metadata for each observation, including `cell_id`, donor, day, cell type, and other batch-related information; can be used for cross-validation.  
@@ -21,11 +21,11 @@ For results and processed data, please refer to: <https://drive.google.com/drive
 
 ---
 
-### Legacy (旧版): `transformer_{name}`
+### Legacy : `transformer_cite/multi.ipynb`
 - **`transformer_cite.ipynb`**: Builds a Transformer model for the CITE dataset (RNA → Protein) and generates predictions.  
 - **`transformer_multi.ipynb`**: Builds a Transformer model for the MULTI dataset (DNA → RNA) and generates predictions.
 
-### New (新版): `transformer_vae_{name}`
+### New : `transformer_vae_cite/multi.ipynb`
 - **`transformer_vae_cite.ipynb`**: VAE-enhanced Transformer pipeline for CITE (RNA → Protein).  
 - **`transformer_vae_multi.ipynb`**: VAE-enhanced Transformer pipeline for MULTI (DNA → RNA).
 
@@ -33,7 +33,7 @@ For results and processed data, please refer to: <https://drive.google.com/drive
 
 ## Algorithm Overview
 
-### Legacy pipeline: `transformer_{name}`
+### Legacy pipeline: Transformer
 
 **Processing for the CITE dataset**
 1. Apply z-score normalization to both inputs and targets.  
@@ -49,7 +49,7 @@ For results and processed data, please refer to: <https://drive.google.com/drive
 
 ---
 
-### New pipeline: `transformer_vae_{name}`
+### New pipeline: "Chinese hamburger（肉夹馍）"VAE Encoder（馍,bread）-Transformer（腊汁肉,meat）-VAE Decoder（馍,bread）
 
 1. **Preprocessing**  
    - For the **input** matrix: divide each column by its **median**.  
@@ -61,9 +61,7 @@ For results and processed data, please refer to: <https://drive.google.com/drive
    - Use the **VAE decoder** to map features back to the target dimensionality.
 
 3. **Loss Design**  
-   \[
-   \text{Total Loss} \;=\; \underbrace{\text{MSE}}_{\text{reconstruction/prediction}} \;-\; \underbrace{\text{Row-wise mean Pearson}}_{\text{maximize correlation}} \;+\; \underbrace{\text{KL divergence}}_{\text{VAE regularization}}
-   \]
+   Total loss = MSE loss - Pearson Correlation Mean + KL Loss
 
 4. **Ensembling**  
    - 5-fold cross-validation (same split strategy as legacy).  
