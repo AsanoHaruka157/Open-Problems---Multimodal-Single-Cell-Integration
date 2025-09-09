@@ -101,8 +101,6 @@ where *p* is the pseudocount (typically 1).
     * The total loss is a combination of two metrics:
         * **Total Loss = MSE Loss + Negative Pearson Correlation**
 
-    > **Note on Inconsistency**: Your original description included "KL Loss". KL Divergence loss is a component specific to Variational Autoencoders (VAEs) used to regularize the latent space distribution. Since this pipeline uses a standard FNN, which is not a generative model and does not produce a latent distribution (`mu`, `log_var`), the KL Loss is not applicable and has been omitted from this description.
-
 5.  **Ensembling and Prediction**
     * The model is trained using a 5-fold cross-validation strategy.
     * For the final test set prediction:
@@ -140,8 +138,6 @@ where *p* is the pseudocount (typically 1).
         1.  The model makes a prediction in the 128-dim latent space.
         2.  This prediction is projected back to the high-dimensional CLR space using the appropriate inverse transforms (`.inverse_transform()`).
         3.  The Pearson correlation is then calculated between these reconstructed predictions and the true, high-dimensional CLR-transformed validation targets.
-
-    > **Note on Inconsistency**: As with Pipeline 3, the "KL Loss" mentioned in your original description is not applicable to an FNN model and has been omitted.
 
 5.  **Ensembling and Prediction**
     * The model is trained using a 5-fold cross-validation strategy.
