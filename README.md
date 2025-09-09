@@ -82,8 +82,8 @@ The final score of this pipeline is 0.489437
 
 1.  **Normalization**
     * For **both the input (X) and target (y) matrices**, a Centered Log-Ratio (CLR) transformation is applied to each row vector. For a given row vector **x** with *D* features, the transformation for each component $x_i$ is defined as:
-        $$ \text{CLR}(x_i) = \log(x_i + p) - \frac{1}{D}\sum_{j=1}^{D} \log(x_j + p) $$
-        where *p* is the pseudocount (typically 1).
+    $$ \text{CLR}(x_i) = \log(x_i + p) - \frac{1}{D}\sum_{j=1}^{D} \log(x_j + p) $$
+    where *p* is the pseudocount (typically 1).
 
 2.  **Dimensionality Reduction**
     * **Input (X)**: `TruncatedSVD` with 128 components is fitted on the CLR-transformed training set `X`. The same fitted SVD model is then used to transform the test set `X`.
@@ -110,8 +110,8 @@ The final score of this pipeline is 0.489437
 
 1.  **Normalization**
     * For **both the input (X) and target (y) matrices**, a Centered Log-Ratio (CLR) transformation is applied to each row vector. The formula is:
-        $$ \text{CLR}(x_i) = \log(x_i + p) - \frac{1}{D}\sum_{j=1}^{D} \log(x_j + p) $$
-        where *p* is the pseudocount (typically 1).
+    $$ \text{CLR}(x_i) = \log(x_i + p) - \frac{1}{D}\sum_{j=1}^{D} \log(x_j + p) $$
+    where *p* is the pseudocount (typically 1).
 
 2.  **Dimensionality Reduction**
     * **Input (X)**: A two-step process is applied to the CLR-transformed `X`.
