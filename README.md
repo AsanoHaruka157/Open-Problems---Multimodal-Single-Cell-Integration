@@ -4,6 +4,7 @@ This is my personal solution to the **2022 NeurIPS Kaggle Competition**, and it 
 Due to file size limitations, for raw data and the problem statement, please refer to: <https://www.kaggle.com/competitions/open-problems-multimodal>  
 For results and processed data, please kindly run the Jupyter Notebooks.
 
+The final pipeline is SVD+FNN, with final score 0.615579
 ---
 
 ## File Introduction
@@ -108,6 +109,8 @@ where *p* is the pseudocount (typically 1).
         2.  These 5 latent-space prediction vectors are **averaged** to create a single ensembled prediction vector.
         3.  Finally, the `inverse_transform` method of the fitted target SVD model (`svd_y`) is applied to this averaged vector to project it back into the original high-dimensional target space.
 
+The final score of this pipeline is 0.615579, I choose this pipeline as final version.
+---
 ### Pipeline 4: SVD+UMAP+FNN
 
 1.  **Normalization**
@@ -125,8 +128,7 @@ where *p* is the pseudocount (typically 1).
         2.  `UMAP` is then applied to the SVD-reduced data to further reduce the dimensionality to 128 non-linear components.
         3.  The same fitted SVD and UMAP mappers are applied to the test set.
     * **Target (y)**: The dimensionality reduction process for the target matrix depends on the dataset:
-        * For the **CITE dataset**, a single `TruncatedSVD` is applied to reduce the CLR-transformed `y` to 128 components.
-        * For the **Multiome dataset**, a two-step `SVD (256 components) -> UMAP (128 components)` process is applied to the CLR-transformed `y`.
+        * A single `TruncatedSVD` is applied to reduce the CLR-transformed `y` to 128 components **for both CITE and MULTI dataset**.
 
 3.  **Model Architecture**
     * A Feedforward Neural Network (FNN/MLP) is used. It maps the 128-dimensional input from the `X` pipeline to a 128-dimensional output, which corresponds to the latent space of the `y` pipeline.
@@ -148,5 +150,7 @@ where *p* is the pseudocount (typically 1).
             * For **CITE**: A single `svd_y.inverse_transform()` is applied.
             * For **Multiome**: A two-step inverse transform is applied: first `umap_y.inverse_transform()`, followed by `svd_y.inverse_transform()`.
 
+The final score of this pipeline is 0.564051
+---
 ### Other Pipelines Tried
 We previously tried standalone VAE models, GRU networks, and ResNet, but abandoned them due to poor performance.
