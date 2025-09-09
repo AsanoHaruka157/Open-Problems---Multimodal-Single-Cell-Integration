@@ -30,12 +30,12 @@ For results and processed data, please kindly run the Jupyter Notebooks.
 - **`transformer_vae_multi.ipynb`**: VAE-enhanced Transformer pipeline for MULTI (DNA → RNA).
 **The difference between codes for cite and multi is the multi codes loads and processes data with chunks due to the size of dataset.**
 
-### 'fnn_svd.ipynb'
+### `fnn_svd.ipynb`
 - Applied a SVD+FNN pipeline for both CITE and MULTI dataset.
 
-### 'fnn_umap_cite/multi.ipynb'
-- **'fnn_umap_cite.ipynb'**: Applied SVD-UMAP-FNN pipeline for input X and SVD-FNN for target y.
-- **'fnn_umap_multi.ipynb'**: Applied SVD-UMAP-FNN pipeline for both input X and target y.
+### `fnn_umap_cite/multi.ipynb`
+- **`fnn_umap_cite.ipynb`**: Applied SVD-UMAP-FNN pipeline for input X and SVD-FNN for target y.
+- **`fnn_umap_multi.ipynb`**: Applied SVD-UMAP-FNN pipeline for both input X and target y.
 ---
 
 ## Algorithm Overview
