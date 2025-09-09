@@ -154,3 +154,17 @@ The final score of this pipeline is 0.564051
 ---
 ### Other Pipelines Tried
 We previously tried standalone VAE models, GRU networks, and ResNet, but abandoned them due to poor performance.
+
+### Commentary and Optimization Ideas
+
+Throughout this project, the pipeline was developed by referencing the strategies of the top 4 competitors, leading to the adoption of techniques including Centered Log-Ratio (CLR) transformation and Singular Value Decomposition (SVD).
+
+Initially, a more complex Transformer architecture was implemented. However, inspired by the principle that simplicity is often most effective ("Big truths are always simple"), this idea was revised after observing that high-scoring competitors frequently used simpler MLP/FNN architectures for their predictive models.
+
+As of September 9th, the results show potential for further optimization, as the target score is 0.7 or higher.
+
+I believe the following areas can be explored for improvement:
+
+* **Date-Aware Cross-Validation:** The cross-validation strategy could be based on the date of observations. This might involve using a `GroupKFold` where folds are split by date, which could provide a more robust validation scheme that respects the temporal nature of the data.
+* **Revised Preprocessing Order:** The preprocessing pipeline could be modified by applying the `log1p` and `CLR` transformations *before* variance-based feature selection. Transforming the data distribution first may lead to a more meaningful feature selection process.
+* **Tuning Dimensionality:** Further experiments should be conducted by testing different numbers of components for the dimensionality reduction steps (e.g., for `TruncatedSVD`).
