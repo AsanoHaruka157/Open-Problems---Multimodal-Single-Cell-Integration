@@ -1,6 +1,7 @@
 # Open-Problems—Multimodal-Single-Cell-Integration
 
 This is my personal solution to the **2022 NeurIPS Kaggle Competition**. This topic has been closed and will no longer be updated
+
 Due to file size limitations, for raw data and the problem statement, please refer to: <https://www.kaggle.com/competitions/open-problems-multimodal>  
 For results and processed data, please kindly run the Jupyter Notebooks.
 
